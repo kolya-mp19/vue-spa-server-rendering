@@ -7,6 +7,13 @@ const indexHTML = (() => {
   return fs.readFileSync(path.resolve(__dirname, "./index.html"), "utf-8");
 })();
 
+
+// для возврата всех статических модулей из папки dist
+app.use('/dist', express.static(path.resolve(__dirname, './dist')))
+
+// расширили 2 новыми методами которые сдела в dev-server.js
+require("./build/dev-server")(app);
+
 // * - обрабатываем любой запрос на порт 3000
 app.get("*", (req, res) => {
   res.write(indexHTML);
