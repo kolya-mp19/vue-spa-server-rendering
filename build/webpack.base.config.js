@@ -1,4 +1,4 @@
-const path = require("path")
+const path = require('path')
 
 const config = {
   entry: {
@@ -7,18 +7,25 @@ const config = {
   module: {
     rules: [
       {
-        enforce: "pre",
+        enforce: 'pre',
+        test: /(\.js$),|(\.vue$)/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          css: 'css-loader',
+          'scss': 'css-loader|sass-loader'
+        }
+      },
+      {
         test: /(\.js$)/,
-        loader: "eslint-loader",
+        loader: 'babel-loader',
         exclude: /node_modules/
       }
     ]
-  },
-  // resolve не рекомендуется т.к. снижает производительность.
-  resolve: {
-    alias: {
-      vue: 'vue/dist/vue.js'
-    }
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -30,5 +37,3 @@ const config = {
 module.exports = config
 
 // node ./node_modules/webpack/bin/webpack --config ./build/webpack.base.config.js - этой командой запустили сборку вебпака
-
-
