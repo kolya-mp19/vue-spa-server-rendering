@@ -11,5 +11,3 @@ module.exports = {
     'html'
   ]
 }
-
-// https://gist.github.com/bstavroulakis/dcaf903e3f8d3bf6e6fa202b34c3849a#file-build-process-lint-install
